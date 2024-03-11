@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #E6F2FF; /* Light blue background */
+}
+
+header {
+    background-color: #0056b3; /* Dark blue header background */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+/* ================================Filter===================== */
+.chart-category {
+    background-color: #2488f328; /* White background for workout categories */ 
+    margin-bottom: 10px;
+    padding: 2px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+.categories-chart a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color from parent */
+}
+
+
+.box-category {
+    background-color: #ffffffb2; /* White background for workout categories */
+    margin-bottom: 5px;
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center;
+}
+/* ================================Filter===================== */
+/* Dark Theme */
+.dark-theme {
+    background-color: #1a1a1a; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+.dark-theme footer {
+    background-color: #333; /* Dark footer background color */
+}
+/* Add styles for the theme switcher button */
+#theme-switcher {
+    background-color: #fff;
+    color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 5px 15px;
+    font-size: 12px;
+}
+
+#theme-switcher:hover {
+    background-color: #d9d9d9;
+}
+
+#theme-switcher i {
+    margin-right: 5px;
+}
+/* ============================== pop-up ===================== */
+
+
+
+/*--------------------------------banner-----------------------------------------*/
+.banner {
+    text-align: center; /* Center the image horizontally */
+    margin-bottom: 20px; /* Add some space below the banner */
+}
+
+.banner img {
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    border-radius: 10px; /* Add rounded corners to the image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.banner h3 {
+    margin: 0;
+}
+
+
+/* ================================Footer===================== */
+
+
+footer {
+    background-color: #0056b3; /* Dark blue footer background */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between; /* Distribute space between the buttons */
+}
+
+.footer-row button {
+    flex: 1; /* Distribute available space equally among the buttons */
+    margin: 0 10px;
+    background-color: #fff;
+    color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+    display: flex; /* Use flexbox to align items */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 5px 30px; /* Adjust padding to increase button size */
+    font-size: 12px; /* Increase font size */
+    padding-right: 30px;
+}
+
+.footer-row a {
+    text-decoration: none; /* Remove underline from links */
+}
+
+.footer-row .footer-link {
+    text-decoration: none; /* Remove underline from specific links in the footer */
+}
+
+
+.footer-row button:hover {
+    background-color: #d9d9d9;
+}
+
+.footer-row button i {
+    margin-bottom: 5px; /* Add some spacing between the icon and the button name */
+}
+
+.footer-row .active button {
+    background-color: #d9d9d9; /* Change background color to indicate active state */
+    color: #0056b3; /* Change text color to indicate active state */
+    font-weight: bold; /* Optionally increase font weight */
+}

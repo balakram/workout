@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Website</title>
+    <link rel="stylesheet" href="exercise.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Exercise Website</h1>
+    </header>
+    <main>
+       <!---- <section class="chart-category">
+            <div class="categories">
+                <h2>Top Categories</h2>
+                <ul>
+                    <li><a href="#">Body Weight</a></li>
+                    <li><a href="#">Dumbbell</a></li>
+                    <li><a href="#">Barbell</a></li>
+                    <li><a href="#">Cable</a></li>
+                    <li><a href="#">Chest</a></li>
+                    <li><a href="#">Biceps</a></li>
+                    <li><a href="#">Back</a></li>
+                    <li><a href="#">Legs</a></li>
+                    <li><a href="#">Shoulder</a></li>
+                </ul>
+            </div>
+         </section>-->
+
+        <section class="chart-category">
+            <!------------------------------------------ Add content for Strength Training workouts ------------------------------------>
+    
+            <div class="chart">
+                                <!-- Add filter button -->
+                                <button class="filter-button">Filter</button>
+                <h2>Exercise Chart</h2>
+                <!------------------------------------------------------ Popup container ---------------------------------------->
+
+               <!-------------------------------------- Popup container ------------------------------------->
+               <div class="popup-container" id="popup">
+                <div class="popup-content">
+                    <span class="close-popup">&times;</span>
+                    <h2>FILTER</h2>
+                    <div class="selection">
+                    <button class="filter-type-btn" data-target="equipment-section">Equipments</button>
+                    <button class="filter-type-btn" data-target="bodypart-section">Body Parts</button>
+                    </div>
+
+                    <div class="filter-section" id="equipment-section">
+                        <h4>Equipments</h4>
+                            <!-- Add more equipment filter checkboxes as needed -->
+                        <button id="select-all-btn" class="select-all-btn">Select All</button>
+                        <!--<div id="selected-count">Equipments:</div>-->
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Assisted">Assisted </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Band">Band </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Barbell">Barbell </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Body Weight">Body Weight </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Bosu ball">Bosu ball </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Cable">Cable </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Dumbbell">Dumbbell </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="EZ Barbell">EZ Barbell </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Hammer">Hammer </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="kettlebell">kettlebell </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Leverage machine">Leverage machine </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Medicine ball">Medicine ball </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Olympic barbell">Olympic barbell </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Resistance Band">Resistance Band </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Rope">Rope </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Sled machine">Sled machine </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Smith machine">Smith machine </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Stability ball">Stability ball </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Suspension">Suspension </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="trap bar">trap bar</label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Weighted">Weighted </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Wheel roller">Wheel roller</label>
+
+                        <!-- Add more equipment filter checkboxes as needed -->
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="filter-section" id="bodypart-section">
+                        <h4>Body Part Options</h4>
+                        <!-- List all body part options here -->
+                        <button id="select-all-btn" class="select-all-btn">Select All</button>
+                        <!---<div id="selected-count">Bodyparts:</div>-->
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Back">Back </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Biceps">Biceps </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Cardio">Cardio </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Chest">Chest </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Core">Core </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Forearms">Forearms </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Fullbody">Fullbody </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Legs">Legs </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Neck">Neck </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Shoulder">Shoulder </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Triceps ">Triceps </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Weightlifting ">Weightlifting </label>
+                        <label><input type="checkbox" class="filter-option-checkbox" value="Yoga">Yoga </label>
+                    </div>
+                    <button id="apply-filter">Apply Filter</button>
+                </div>
+            </div>
+            
+            
+        
+
+                <!----------------------------------------------------------------------- Popup container End------------------------------------->
+
+                <div class="categories-chart">
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Body Weight</h3>
+                            <!-- Body Weight exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Dumbbell</h3>
+                            <!-- Dumbbell exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Barbell</h3>
+                            <!-- Barbell exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Cable</h3>
+                            <!-- Cable exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category " >
+                            <h3>Chest</h3>
+                            <!-- Chest exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Biceps</h3>
+                            <!-- Biceps exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Back</h3>
+                            <!-- Back exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Legs</h3>
+                            <!-- Legs exercises -->
+                        </div>
+                    </a>
+                    <a href="#body-weight" class="category-link">
+                        <div class="category box-category">
+                            <h3>Shoulder</h3>
+                            <!-- Shoulder exercises -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Add boxes inside each category -->
+
+
+
+    </main>
+
+    <footer>
+        <nav>
+            <div class="footer-row">
+                <a href="exercise.html" class="active">
+                    <button><i class="fas fa-dumbbell"></i><span>Exercise</span></button>
+                </a>
+
+                <a href="/index.html">
+                    <button><i class="fas fa-home"></i><span>Home</span></button>
+                </a>
+
+                <a href="/Workout/workout.html">
+                    <button><i class="fas fa-running"></i><span>Workout</span></button>
+                </a>
+
+            </div>
+        </nav>
+    </footer>
+    <script src="exercise.js"></script>
+</body>
+</html>

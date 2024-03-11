@@ -1,0 +1,187 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #E6F2FF; /* Light blue background */
+}
+
+header {
+    background-color: #0056b3; /* Dark blue header background */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+.workout-category {
+    background-color: #fff; /* White background for workout categories */
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+
+/*--------------------------------banner-----------------------------------------*/
+.banner {
+    text-align: center; /* Center the image horizontally */
+    margin-bottom: 20px; /* Add some space below the banner */
+}
+
+.banner img {
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    border-radius: 10px; /* Add rounded corners to the image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.banner h3 {
+    margin: 0;
+}
+
+
+/* ================================Columns===================== */
+.columns-section {
+    margin-top: 20px; /* Add some space between the workout categories and columns */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    margin-bottom: 60ps;
+}
+
+.columns-container {
+    display: flex; /* Use flexbox for layout */
+}
+
+.column {
+    flex: 0 0 auto; /* Ensure columns don't grow or shrink */
+    width: 200px; /* Set width for each column */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Add space between columns */
+    text-align: center; /* Center align content */
+    position: relative; /* Make position relative for absolute positioning of content */
+    overflow: hidden; /* Hide overflow to ensure background image doesn't extend beyond column */
+}
+
+
+.column-content {
+    position: relative;
+    z-index: 0;
+}
+
+.column img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.column h3, .column p {
+    color: #000; /* Set text color to black */
+    text-align: left;
+}
+
+.column h3 {
+    margin-top: 0;
+
+}
+
+.column p {
+    margin: 0;
+}
+
+.column a {
+    display: block; /* Ensure the link covers the entire column */
+    width: 100%; /* Make it full width */
+    height: 100%; /* Make it full height */
+    text-decoration: none; /* Remove default link underline */
+    color: inherit; /* Inherit text color from parent */
+}
+
+
+.six-boxes-section {
+    margin-top: 20px; /* Add some space between sections */
+    margin-bottom: 20px; /* Add margin at the bottom */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.six-boxes-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow boxes to wrap to the next row if necessary */
+}
+
+.box {
+    flex: 0 0 calc(33.33% - 20px); /* Set width for each box (assuming three boxes per row with some spacing between them) */
+    margin-right: 20px; /* Add space between boxes */
+    margin-bottom: 20px; /* Add space below each box */
+    padding: 20px; /* Add padding */
+    background-color: #f9f9f9; /* Set background color */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+
+
+/* ================================Footer===================== */
+
+
+footer {
+    background-color: #0056b3; /* Dark blue footer background */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between; /* Distribute space between the buttons */
+}
+
+.footer-row button {
+    flex: 1; /* Distribute available space equally among the buttons */
+    margin: 0 10px;
+    background-color: #fff;
+    color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+    display: flex; /* Use flexbox to align items */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 5px 30px; /* Adjust padding to increase button size */
+    font-size: 12px; /* Increase font size */
+    padding-right: 30px;
+}
+
+.footer-row a {
+    text-decoration: none; /* Remove underline from links */
+}
+
+.footer-row .footer-link {
+    text-decoration: none; /* Remove underline from specific links in the footer */
+}
+
+
+.footer-row button:hover {
+    background-color: #d9d9d9;
+}
+
+.footer-row button i {
+    margin-bottom: 5px; /* Add some spacing between the icon and the button name */
+}
+.footer-row .active button {
+    background-color: #ffffff; /* Change background color to indicate active state */
+    color: #007bff; /* Change text color to indicate active state */
+    font-weight: bold; /* Optionally increase font weight */
+}
