@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,6 @@
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             color: #e0e0e0;
             line-height: 1.6;
-            overflow-x: hidden;
             transition: background 0.5s, color 0.5s;
         }
 
@@ -26,7 +26,59 @@
             color: #333;
         }
 
-        /* Sidebar Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            transition: padding 0.3s;
+        }
+
+        .light-mode .header {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background: linear-gradient(45deg, #388E3C, #4CAF50);
+            transform: rotate(90deg);
+        }
+
+        .menu-btn.active {
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+        }
+
+        .mode-toggle {
+            background: #4CAF50;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .mode-toggle:hover {
+            background: #388E3C;
+        }
+
         .sidebar {
             height: 100%;
             width: 0;
@@ -36,7 +88,7 @@
             background: linear-gradient(to bottom, #2c2c2c, #1a1a1a);
             overflow-x: hidden;
             transition: width 0.5s ease;
-            padding-top: 80px;
+            padding-top: 70px;
             z-index: 1000;
             box-shadow: 2px 0 10px rgba(0,0,0,0.5);
         }
@@ -47,7 +99,7 @@
         }
 
         .sidebar a {
-            padding: 15px 25px;
+            padding: 15px 20px;
             text-decoration: none;
             font-size: 18px;
             color: #f0f0f0;
@@ -60,20 +112,19 @@
         }
 
         .sidebar a:hover {
-            background-color: #4CAF50;
+            background: #4CAF50;
             color: #fff;
-            padding-left: 35px;
-            transform: scale(1.05);
+            padding-left: 30px;
         }
 
         .sidebar .close-btn {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 15px;
+            right: 20px;
             font-size: 30px;
             color: #fff;
             cursor: pointer;
-            transition: 0.3s;
+            transition: color 0.3s;
         }
 
         .sidebar.light-mode .close-btn {
@@ -84,173 +135,84 @@
             color: #4CAF50;
         }
 
-        .menu-btn {
-            font-size: 24px;
-            cursor: pointer;
-            background: linear-gradient(45deg, #4CAF50, #66BB6A);
-            color: #fff;
-            padding: 12px 18px;
-            border: none;
-            border-radius: 50%;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 2000;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        .developer-info {
+            padding: 20px;
+            font-size: 14px;
+            color: #e0e0e0;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
         }
 
-        .menu-btn:hover {
-            background: linear-gradient(45deg, #388E3C, #4CAF50);
-            transform: rotate(90deg);
+        .light-mode .developer-info {
+            color: #333;
         }
 
-        .menu-btn.active {
-            background: linear-gradient(45deg, #d32f2f, #f44336);
+        .developer-info a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        /* Mode Toggle Button */
-        .mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 2000;
-            transition: 0.3s;
+        .developer-info a:hover {
+            color: #66BB6A;
         }
 
-        .mode-toggle:hover {
-            background: #388E3C;
-        }
-
-        /* Main Content */
         .main-content {
-            margin-left: 20px;
-            padding: 40px;
+            padding: 80px 20px 20px;
             transition: margin-left 0.5s ease;
         }
 
         h1 {
-            color: #4CAF50;
-            margin-bottom: 40px;
             text-align: center;
-            font-size: 3em;
+            font-size: 2.5em;
+            color: #4CAF50;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #4CAF50, #66BB6A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .light-mode h1 {
-            background: linear-gradient(to right, #4CAF50, #66BB6A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
 
         h2 {
             color: #fff;
-            margin: 30px 0 20px;
-            font-size: 2em;
+            font-size: 1.8em;
+            margin: 20px 0 15px;
             border-bottom: 2px solid #4CAF50;
             padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .light-mode h2 {
             color: #333;
         }
 
-        h3 {
-            color: #4CAF50;
-            margin: 20px 0 15px;
-            font-size: 1.5em;
-        }
-
-        /* Section Styling */
         .section {
             display: none;
             background: rgba(44, 44, 44, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-            margin-bottom: 30px;
-            animation: slideIn 0.5s ease;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .light-mode .section {
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .section.active {
             display: block;
         }
 
-        /* Checkbox Styling */
-        .workout-item {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-            background: #333;
-            padding: 10px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .light-mode .workout-item {
-            background: #e0e0e0;
-        }
-
-        .workout-item:hover {
-            background: #3d3d3d;
-            transform: translateX(5px);
-        }
-
-        .light-mode .workout-item:hover {
-            background: #d0d0d0;
-        }
-
-        .workout-item input[type="checkbox"] {
-            margin-right: 15px;
-            accent-color: #4CAF50;
-            transform: scale(1.2);
-        }
-
-        /* Progress Bar */
-        #progress {
-            width: 100%;
-            background: #444;
-            height: 10px;
-            margin-top: 20px;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .light-mode #progress {
-            background: #ccc;
-        }
-
-        #progress-bar {
-            width: 0%;
-            background: #4CAF50;
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-
-        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.95em;
+            margin: 20px 0;
+            font-size: 0.9em;
             background: #333;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -259,7 +221,7 @@
         }
 
         th, td {
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             border: 1px solid #444;
         }
@@ -275,164 +237,213 @@
         }
 
         tr:nth-child(even) {
-            background-color: #3d3d3d;
+            background: #3d3d3d;
         }
 
         .light-mode tr:nth-child(even) {
-            background-color: #f0f0f0;
-        }
-
-        tr:hover {
-            background-color: #444;
-        }
-
-        .light-mode tr:hover {
-            background-color: #e0e0e0;
-        }
-
-        /* Images and GIFs */
-        .exercise-img, .diet-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 15px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .light-mode .exercise-img, .light-mode .diet-img {
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .exercise-img:hover, .diet-img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Diet Plan */
-        .diet-item {
-            margin: 25px 0;
-            padding: 20px;
-            background: #333;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-
-        .light-mode .diet-item {
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .diet-item:hover {
-            background: #3d3d3d;
-            transform: translateY(-5px);
-        }
-
-        .light-mode .diet-item:hover {
             background: #f0f0f0;
         }
 
-        .diet-item p {
-            margin: 10px 0;
+        tr:hover {
+            background: #444;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .light-mode tr:hover {
+            background: #e0e0e0;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .timestamp {
+            color: #4CAF50;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 0.85em;
         }
 
-        /* Responsive Design */
+        .timestamp:hover {
+            color: #66BB6A;
+            text-decoration: underline;
+        }
+
+        #progress {
+            width: 100%;
+            background: #444;
+            height: 8px;
+            margin: 15px 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .light-mode #progress {
+            background: #ccc;
+        }
+
+        #progress-bar {
+            width: 0%;
+            background: #4CAF50;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .assistance-toggle {
+            background: #666;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .assistance-toggle.on {
+            background: #4CAF50;
+        }
+
+        .assistance-toggle:hover {
+            background: #888;
+        }
+
+        .assistance-video {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .assistance-video.active {
+            display: block;
+        }
+
+        #youtube-player {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            border-radius: 8px;
+        }
+
+        .rest-note {
+            font-size: 0.85em;
+            color: #bbb;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .light-mode .rest-note {
+            color: #666;
+        }
+
         @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             .main-content {
-                margin-left: 0;
-                padding: 25px;
+                padding: 70px 15px 15px;
             }
 
             h1 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
 
             h2 {
-                font-size: 1.6em;
+                font-size: 1.5em;
             }
 
-            table, th, td {
-                font-size: 0.85em;
-                padding: 12px;
+            table {
+                font-size: 0.8em;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
             }
 
             .sidebar {
                 width: 0;
             }
 
-            .sidebar a {
+            .sidebar a, .developer-info {
                 font-size: 16px;
+            }
+
+            #youtube-player {
+                height: 200px;
             }
         }
 
         @media (max-width: 480px) {
-            table {
-                display: block;
-                overflow-x: auto;
+            .header {
+                padding: 8px 10px;
             }
 
             .menu-btn, .mode-toggle {
-                padding: 10px 15px;
+                padding: 8px 12px;
                 font-size: 20px;
             }
 
-            .exercise-img, .diet-img {
-                max-width: 90%;
+            h1 {
+                font-size: 1.5em;
             }
 
-            h1 {
-                font-size: 1.8em;
+            h2 {
+                font-size: 1.2em;
+            }
+
+            table {
+                font-size: 0.7em;
+            }
+
+            .rest-note, .developer-info {
+                font-size: 0.75em;
+            }
+
+            .assistance-toggle {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+
+            #youtube-player {
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
+    <div class="header">
+        <button id="menu-btn" class="menu-btn" onclick="toggleNav()">☰</button>
+        <button id="mode-toggle" class="mode-toggle" onclick="toggleMode()">☀️</button>
+    </div>
+
     <div id="sidebar" class="sidebar">
         <span class="close-btn" onclick="toggleNav()">×</span>
         <a href="#" onclick="showSection('today')">Today's Workout</a>
         <a href="#" onclick="showSection('weekly')">Weekly Schedule</a>
         <a href="#" onclick="showSection('diet')">Diet Plan</a>
+        <div class="developer-info">
+            Developed by Balakram Tudu | 
+            <a href="https://balakramtudu-portfolio.com" target="_blank">Portfolio</a>
+        </div>
     </div>
 
-    <!-- Toggle Menu Button -->
-    <button id="menu-btn" class="menu-btn" onclick="toggleNav()">☰</button>
-
-    <!-- Mode Toggle Button -->
-    <button id="mode-toggle" class="mode-toggle" onclick="toggleMode()">Light Mode</button>
-
-    <!-- Main Content -->
     <div class="main-content">
         <h1>RAMBO Muscle Building Program</h1>
 
-        <!-- Today's Workout Section -->
         <div id="today" class="section active">
-            <h2>Today's Workout</h2>
+            <h2>Today's Workout <button id="assistance-btn" class="assistance-toggle" onclick="toggleAssistance()">Assistance</button></h2>
             <div id="today-workout"></div>
             <div id="progress">
                 <div id="progress-bar"></div>
             </div>
-            <button onclick="localStorage.clear(); loadTodayWorkout();">Reset Progress</button>
+            <div id="assistance-video" class="assistance-video">
+                <div id="youtube-player"></div>
+            </div>
         </div>
 
-        <!-- Weekly Schedule Section -->
         <div id="weekly" class="section">
             <h2>Weekly Workout Schedule</h2>
             <table>
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Week</th>
                         <th>MON</th>
                         <th>TUE</th>
                         <th>WED</th>
@@ -457,149 +468,169 @@
             </table>
 
             <h2>CHEST | TRICEPS</h2>
-            <img src="https://media.giphy.com/media/3o7TKz2bF9XjX6Q8G4/giphy.gif" alt="Chest Workout GIF" class="exercise-img">
             <table>
                 <thead>
                     <tr>
                         <th>EXERCISES</th>
                         <th>REPS</th>
                         <th>TECHNIQUE</th>
+                        <th>ALTERNATE EXERCISES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1A. DB BENCH PRESS / 1B. SKULL CRUSHER</td>
+                        <td>1A. DB BENCH PRESS<br>1B. SKULL CRUSHER</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Barbell Bench Press</td>
                     </tr>
                     <tr>
-                        <td>2A. DB INCLINE PRESS / 2B. TRICEP PRESSDOWN</td>
+                        <td>2A. DB INCLINE PRESS<br>2B. TRICEP PRESSDOWN</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Barbell Incline Press</td>
                     </tr>
                     <tr>
-                        <td>3A. DB INCLINE FLY / 3B. TRICEP BENCH DIPS</td>
+                        <td>3A. DB INCLINE FLY<br>3B. TRICEP BENCH DIPS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>DB Tricep Overhead Extension</td>
                     </tr>
                     <tr>
-                        <td>4A. DECLINE PUSH-UPS / 4B. INCLINE CLOSE HAND PUSH-UPS</td>
+                        <td>4A. DECLINE PUSH-UPS<br>4B. INCLINE CLOSE HAND PUSH-UPS (TRICEPS)</td>
                         <td>Set#1 - 15-20 / Set#2 - 15-20</td>
                         <td>Regular / Regular</td>
+                        <td>Cable Fly / Tricep Kickback</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="rest-note">REST: Take 60 Sec rest after each super set. TUT means Time Under Tension (5sec Tempo).</p>
 
             <h2>BACK | BICEPS</h2>
-            <img src="https://media.giphy.com/media/26xBzdJxxHEdAl4v6/giphy.gif" alt="Back Workout GIF" class="exercise-img">
             <table>
                 <thead>
                     <tr>
                         <th>EXERCISES</th>
                         <th>REPS</th>
                         <th>TECHNIQUE</th>
+                        <th>ALTERNATE EXERCISES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1A. WIDE GRIP LAT PULLDOWN / 1B. BARBELL BICEP CURLS</td>
+                        <td>1A. WIDE GRIP LAT PULLDOWN<br>1B. BARBELL BICEP CURLS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>DB Bicep Curls</td>
                     </tr>
                     <tr>
-                        <td>2A. CLOSE GRIP MACHINE ROWS / 2B. DB HAMMER CURLS</td>
+                        <td>2A. CLOSE GRIP MACHINE ROWS<br>2B. DB HAMMER CURLS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Barbell Reverse Curls</td>
                     </tr>
                     <tr>
-                        <td>3A. HAMMER ROWS / 3B. INCLINE DB CURLS</td>
+                        <td>3A. HAMMER ROWS<br>3B. INCLINE DB CURLS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>T-Bar Rows / Preacher Curls</td>
                     </tr>
                     <tr>
-                        <td>4A. LAYING ROP ROWS / 4B. HIGH ANGLE BICEP CURLS</td>
+                        <td>4A. LAYING ROP ROWS<br>4B. HIGH ANGLE BICEP CURLS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>DB Rows / Concentration Curls</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="rest-note">REST: Take 60 Sec rest after each super set. TUT means Time Under Tension (5sec Tempo).</p>
 
             <h2>SHOULDERS | TRAPS</h2>
-            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Shoulder Workout GIF" class="exercise-img">
             <table>
                 <thead>
                     <tr>
                         <th>EXERCISES</th>
                         <th>REPS</th>
                         <th>TECHNIQUE</th>
+                        <th>ALTERNATE EXERCISES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1A. SEATED DB PRESS / 1B. REAR DELT DB FLYS</td>
+                        <td>1A. SEATED DB PRESS<br>1B. REAR DELT DB FLYS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Barbell Shoulder Press</td>
                     </tr>
                     <tr>
-                        <td>2A. DB SIDE RAISES / 2B. PLATE OR BARBELL UPRIGHT ROWS</td>
+                        <td>2A. DB SIDE RAISES<br>2B. PLATE OR BARBELL UPRIGHT ROWS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Cable Side Raises</td>
                     </tr>
                     <tr>
-                        <td>3A. BAR FRONT ROWS / 3B. INCLINE DB FRONT ROWS</td>
+                        <td>3A. BAR FRONT ROWS<br>3B. INCLINE DB FRONT ROWS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Cable Front Rows</td>
                     </tr>
                     <tr>
                         <td>4. BARBELL SHRUGS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>DB Shrugs</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="rest-note">REST: Take 60 Sec rest after each super set. TUT means Time Under Tension (5sec Tempo).</p>
 
             <h2>QUADS | HAMSTRING | CALVES</h2>
-            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Leg Workout GIF" class="exercise-img">
             <table>
                 <thead>
                     <tr>
                         <th>EXERCISES</th>
                         <th>REPS</th>
                         <th>TECHNIQUE</th>
+                        <th>ALTERNATE EXERCISES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1A. BARBELL BACK SQUATS / 1B. LEG PRESS</td>
+                        <td>1A. BARBELL BACK SQUATS<br>1B. LEG PRESS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>DB Squats / Squats on Smith</td>
                     </tr>
                     <tr>
-                        <td>2A. DB STIFF LEG DEADLIFT / 2B. DB SPLIT SQUAT</td>
+                        <td>2A. DB STIFF LEG DEADLIFT<br>2B. DB SPLIT SQUAT</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Barbell Stiff Leg Deadlift</td>
                     </tr>
                     <tr>
-                        <td>3A. LEG EXTENSION / 3B. LAYING LEG CURLS</td>
+                        <td>3A. LEG EXTENSION<br>3B. LAYING LEG CURLS</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>DB Lunges</td>
                     </tr>
                     <tr>
-                        <td>4A. DONKEY CALF RAISES / 4B. SEATED CALF RAISES</td>
+                        <td>4A. DONKEY CALF RAISES<br>4B. SEATED CALF RAISES</td>
                         <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
                         <td>Regular / TUT / Drop</td>
+                        <td>Standing Calf Raises</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="rest-note">REST: Take 60 Sec rest after each super set. TUT means Time Under Tension (5sec Tempo).</p>
 
             <h2>ABS</h2>
-            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Abs Workout GIF" class="exercise-img">
             <table>
                 <thead>
                     <tr>
                         <th>EXERCISES</th>
                         <th>REPS</th>
                         <th>TECHNIQUE</th>
+                        <th>ALTERNATE EXERCISES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -607,97 +638,75 @@
                         <td>HANGING LEG RAISE</td>
                         <td>3 x 15-20</td>
                         <td>Regular</td>
+                        <td>Laying Leg Raise</td>
                     </tr>
                     <tr>
                         <td>ROPE CRUNCHES</td>
                         <td>3 x 15-20</td>
                         <td>Regular</td>
+                        <td>Incline Crunches</td>
                     </tr>
                     <tr>
                         <td>CABLE SIDE TWIST</td>
                         <td>3 x 15-20</td>
                         <td>Regular</td>
+                        <td>Russian Twist / Woodchopper</td>
                     </tr>
                     <tr>
                         <td>PLATE SIDE BEND</td>
                         <td>3 x 15-20</td>
                         <td>Regular</td>
+                        <td>Side Planks / DB Side Bend</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="rest-note">REST: Take 30 Sec rest after each set.</p>
 
             <h2>CARDIO</h2>
-            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Cardio Workout GIF" class="exercise-img">
             <table>
                 <thead>
                     <tr>
-                        <th>MACHINE</th>
-                        <th>ACTIVITY</th>
-                        <th>TIME</th>
+                        <th>EXERCISES</th>
+                        <th>REPS</th>
+                        <th>TECHNIQUE</th>
+                        <th>ALTERNATE EXERCISES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>TREADMILL - 25 MIN</td>
-                        <td>WARM UP / JOGGING / COOL DOWN</td>
-                        <td>5 MIN / 15 MIN / 5 MIN</td>
+                        <td>TREADMILL (25 MIN)</td>
+                        <td>5 / 15 / 5 min</td>
+                        <td>Warm / Jog / Cool</td>
+                        <td>Ellipticals / Stationary Bike</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="rest-note">NOTE: Cardio can be performed 1-3 times a week.</p>
+        </div>
+
+        <div id="diet" class="section">
+            <h2>Diet Plan</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>MEAL</th>
+                        <th>INGREDIENTS</th>
+                        <th>MACROS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Meal 1 - Oat Meal</td>
+                        <td>OATS: 150g | ALMONDS: 22g | RAISINS: 15g | WHEY: 1.5 scoop OR BOILED EGG WHITES: 6-8</td>
+                        <td>CALORIES: 515 | PROTEIN: 40g | CARBS: 55g | FATS: 15g</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <!-- Diet Plan Section -->
-        <div id="diet" class="section">
-            <h2>Diet Plan</h2>
-            <div class="diet-item">
-                <h3>Meal 1 - Oat Meal</h3>
-                <img src="https://via.placeholder.com/300x200?text=Oat+Meal" alt="Oat Meal" class="diet-img">
-                <p>OATS: 150g | ALMONDS: 22g | RAISINS: 15g | WHEY: 1.5 scoop OR BOILED EGG WHITES: 6-8</p>
-                <p>CALORIES: 515 | PROTEIN: 40g | CARBS: 55g | FATS: 15g</p>
-            </div>
-            <div class="diet-item">
-                <h3>Meal 2 - Bread Omelet</h3>
-                <img src="https://via.placeholder.com/300x200?text=Bread+Omelet" alt="Bread Omelet" class="diet-img">
-                <p>WHOLE EGG: 1 | EGG WHITES: 6 | MIXED VEGETABLES: 1 cup | WHEAT BREAD: 2 slices</p>
-                <p>CALORIES: 410 | PROTEIN: 30g | CARBS: 50g | FATS: 10g</p>
-            </div>
-            <div class="diet-item">
-                <h3>Meal 3 - Wrap</h3>
-                <img src="https://via.placeholder.com/300x200?text=Chicken+Wrap" alt="Chicken Wrap" class="diet-img">
-                <p>GRILLED CHICKEN: 100g | BLACK BEANS: 100g | MIXED VEGGIES (SAUTEED): 1 cup | WHEAT TORTILLA: 1</p>
-                <p>CALORIES: 450 | PROTEIN: 40g | CARBS: 50g | FATS: 10g</p>
-            </div>
-            <div class="diet-item">
-                <h3>Meal 4 - Sprouted Beans & Eggs</h3>
-                <img src="https://via.placeholder.com/300x200?text=Sprouted+Beans" alt="Sprouted Beans" class="diet-img">
-                <p>SPROUTED BEANS: 100g | KIDNEY BEANS: 50g | WHITE CHANNA: 50g | MIXED VEGGIES: 1 cup | BOILED EGG WHITES: 3-4</p>
-                <p>CALORIES: 439 | PROTEIN: 30g | CARBS: 55g | FATS: 11g</p>
-            </div>
-            <div class="diet-item">
-                <h3>Meal 5 - Chicken & Rice</h3>
-                <img src="https://via.placeholder.com/300x200?text=Chicken+Rice" alt="Chicken & Rice" class="diet-img">
-                <p>GRILLED CHICKEN: 150g | MIXED VEGGIES (SAUTEED): 1 cup | COCONUT OIL: 1/2 tsp | BROWN RICE: 200g</p>
-                <p>CALORIES: 450 | PROTEIN: 40g | CARBS: 50g | FATS: 10g</p>
-            </div>
-            <div class="diet-item">
-                <h3>Pre-Workout</h3>
-                <img src="https://via.placeholder.com/300x200?text=Pre-Workout+Drink" alt="Pre-Workout Drink" class="diet-img">
-                <p>BULLET: 1 scoop | WATER: 120ml</p>
-            </div>
-            <div class="diet-item">
-                <h3>During Workout</h3>
-                <img src="https://via.placeholder.com/300x200?text=BCAA+Drink" alt="BCAA Drink" class="diet-img">
-                <p>BCAA: 1 scoop | WATER: 500-800ml</p>
-            </div>
-            <div class="diet-item">
-                <h3>Post-Workout</h3>
-                <img src="https://via.placeholder.com/300x200?text=Whey+Shake" alt="Whey Shake" class="diet-img">
-                <p>WHEY BLEND OR ISOLATE: 2 scoops | WATER: 350-400ml | 4 DATES OR GRAPES: 80-100g</p>
-                <p>CALORIES: 280 | PROTEIN: 50g | CARBS: 20g | FATS: 0g</p>
-            </div>
-        </div>
     </div>
 
+    <!-- Load YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         // Toggle Menu Navigation
         const sidebar = document.getElementById("sidebar");
@@ -707,12 +716,10 @@
         function toggleNav() {
             if (isOpen) {
                 sidebar.style.width = "0";
-                document.querySelector(".main-content").style.marginLeft = "20px";
                 menuBtn.innerHTML = "☰";
                 menuBtn.classList.remove("active");
             } else {
                 sidebar.style.width = "250px";
-                document.querySelector(".main-content").style.marginLeft = "250px";
                 menuBtn.innerHTML = "✖";
                 menuBtn.classList.add("active");
             }
@@ -725,7 +732,7 @@
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
-            toggleNav(); // Close sidebar after selection
+            toggleNav();
         }
 
         // Dark/Light Mode Toggle
@@ -736,23 +743,119 @@
             isLightMode = !isLightMode;
             document.body.classList.toggle("light-mode");
             sidebar.classList.toggle("light-mode");
-            modeToggle.textContent = isLightMode ? "Dark Mode" : "Light Mode";
+            modeToggle.innerHTML = isLightMode ? "🌙" : "☀️";
             localStorage.setItem("theme", isLightMode ? "light" : "dark");
         }
 
-        // Load saved theme
         if (localStorage.getItem("theme") === "light") {
             toggleMode();
         }
 
-        // Today's Workout Logic with Local Storage and Progress Bar
+        // Assistance Toggle and YouTube Player
+        const assistanceBtn = document.getElementById("assistance-btn");
+        const assistanceVideo = document.getElementById("assistance-video");
+        let isAssistanceOn = false;
+        let player;
+
+        function toggleAssistance() {
+            isAssistanceOn = !isAssistanceOn;
+            assistanceBtn.classList.toggle("on", isAssistanceOn);
+            assistanceVideo.classList.toggle("active", isAssistanceOn);
+            if (isAssistanceOn && !player) {
+                initYouTubePlayer();
+            }
+        }
+
+        function initYouTubePlayer() {
+            const today = new Date().toLocaleString('en-us', { weekday: 'long' });
+            const workout = workouts.find(w => w.day === today);
+            const videoId = workout.videoId; // Get video ID for today's workout
+
+            player = new YT.Player('youtube-player', {
+                height: '300',
+                width: '600',
+                videoId: videoId,
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 1,
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player is ready, but don't play until a timestamp is clicked
+        }
+
+        function playVideoAtTimestamp(seconds) {
+            if (player && isAssistanceOn) {
+                player.seekTo(seconds, true);
+                player.playVideo();
+            }
+        }
+
+        // Today's Workout Logic
         const workouts = [
-            { day: "Monday", name: "CHEST & TRICEPS", exercises: ["DB Bench Press", "Skull Crusher", "DB Incline Press", "Tricep Pressdown"] },
-            { day: "Tuesday", name: "BACK & BICEPS", exercises: ["Wide Grip Lat Pulldown", "Barbell Bicep Curls", "Close Grip Machine Rows", "DB Hammer Curls"] },
+            { 
+                day: "Monday", 
+                name: "CHEST & TRICEPS", 
+                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                exercises: [
+                    { name: "1A. DB Bench Press<br>1B. Skull Crusher", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Bench Press", timestamp: "0:00-1:30", startSeconds: 0 },
+                    { name: "2A. DB Incline Press<br>2B. Tricep Pressdown", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Incline Press", timestamp: "1:31-3:00", startSeconds: 91 },
+                    { name: "3A. DB Incline Fly<br>3B. Tricep Bench Dips", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Tricep Overhead Extension", timestamp: "3:01-4:30", startSeconds: 181 },
+                    { name: "4A. Decline Push-Ups<br>4B. Incline Close Hand Push-Ups (Triceps)", reps: "Set#1 - 15-20 / Set#2 - 15-20", technique: "Regular / Regular", alternate: "Cable Fly / Tricep Kickback", timestamp: "4:31-6:00", startSeconds: 271 }
+                ]
+            },
+            { 
+                day: "Tuesday", 
+                name: "BACK & BICEPS", 
+                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                exercises: [
+                    { name: "1A. Wide Grip Lat Pulldown<br>1B. Barbell Bicep Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Bicep Curls", timestamp: "0:00-1:30", startSeconds: 0 },
+                    { name: "2A. Close Grip Machine Rows<br>2B. DB Hammer Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Reverse Curls", timestamp: "1:31-3:00", startSeconds: 91 },
+                    { name: "3A. Hammer Rows<br>3B. Incline DB Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "T-Bar Rows / Preacher Curls", timestamp: "3:01-4:30", startSeconds: 181 },
+                    { name: "4A. Laying Rop Rows<br>4B. High Angle Bicep Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Rows / Concentration Curls", timestamp: "4:31-6:00", startSeconds: 271 }
+                ]
+            },
             { day: "Wednesday", name: "REST", exercises: [] },
-            { day: "Thursday", name: "DELTS & TRAPS", exercises: ["Seated DB Press", "Rear Delt DB Flys", "DB Side Raises", "Barbell Shrugs"] },
-            { day: "Friday", name: "LEGS", exercises: ["Barbell Back Squats", "Leg Press", "DB Stiff Leg Deadlift", "Leg Extension"] },
-            { day: "Saturday", name: "CARDIO & ABS", exercises: ["Hanging Leg Raise", "Rope Crunches", "Treadmill (25 min)"] },
+            { 
+                day: "Thursday", 
+                name: "DELTS & TRAPS", 
+                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                exercises: [
+                    { name: "1A. Seated DB Press<br>1B. Rear Delt DB Flys", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Shoulder Press", timestamp: "0:00-1:30", startSeconds: 0 },
+                    { name: "2A. DB Side Raises<br>2B. Plate or Barbell Upright Rows", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Cable Side Raises", timestamp: "1:31-3:00", startSeconds: 91 },
+                    { name: "3A. Bar Front Rows<br>3B. Incline DB Front Rows", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Cable Front Rows", timestamp: "3:01-4:30", startSeconds: 181 },
+                    { name: "4. Barbell Shrugs", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Shrugs", timestamp: "4:31-6:00", startSeconds: 271 }
+                ]
+            },
+            { 
+                day: "Friday", 
+                name: "LEGS", 
+                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                exercises: [
+                    { name: "1A. Barbell Back Squats<br>1B. Leg Press", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Squats / Squats on Smith", timestamp: "0:00-1:30", startSeconds: 0 },
+                    { name: "2A. DB Stiff Leg Deadlift<br>2B. DB Split Squat", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Stiff Leg Deadlift", timestamp: "1:31-3:00", startSeconds: 91 },
+                    { name: "3A. Leg Extension<br>3B. Laying Leg Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Lunges", timestamp: "3:01-4:30", startSeconds: 181 },
+                    { name: "4A. Donkey Calf Raises<br>4B. Seated Calf Raises", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Standing Calf Raises", timestamp: "4:31-6:00", startSeconds: 271 }
+                ]
+            },
+            { 
+                day: "Saturday", 
+                name: "CARDIO & ABS", 
+                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                exercises: [
+                    { name: "Hanging Leg Raise", reps: "3 x 15-20", technique: "Regular", alternate: "Laying Leg Raise", timestamp: "0:00-1:00", startSeconds: 0 },
+                    { name: "Rope Crunches", reps: "3 x 15-20", technique: "Regular", alternate: "Incline Crunches", timestamp: "1:01-2:00", startSeconds: 61 },
+                    { name: "Cable Side Twist", reps: "3 x 15-20", technique: "Regular", alternate: "Russian Twist / Woodchopper", timestamp: "2:01-3:00", startSeconds: 121 },
+                    { name: "Plate Side Bend", reps: "3 x 15-20", technique: "Regular", alternate: "Side Planks / DB Side Bend", timestamp: "3:01-4:00", startSeconds: 181 },
+                    { name: "Treadmill (25 min)", reps: "5 / 15 / 5 min", technique: "Warm / Jog / Cool", alternate: "Ellipticals / Stationary Bike", timestamp: "4:01-6:00", startSeconds: 241 }
+                ]
+            },
             { day: "Sunday", name: "REST", exercises: [] }
         ];
 
@@ -771,23 +874,51 @@
 
             if (workout.exercises.length > 0) {
                 container.innerHTML = `<h3>${workout.name}</h3>`;
+                let tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Complete</th>
+                                <th>EXERCISES</th>
+                                <th>REPS</th>
+                                <th>TECHNIQUE</th>
+                                <th>ALTERNATE EXERCISES</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
                 workout.exercises.forEach(ex => {
-                    const checkboxId = `${today}-${ex}`;
+                    const checkboxId = `${today}-${ex.name}`;
                     const isChecked = localStorage.getItem(checkboxId) === "true";
-                    container.innerHTML += `
-                        <div class="workout-item">
-                            <input type="checkbox" id="${checkboxId}" ${isChecked ? "checked" : ""}>
-                            <label for="${checkboxId}">${ex}</label>
-                        </div>`;
+                    tableHTML += `
+                        <tr>
+                            <td><input type="checkbox" id="${checkboxId}" ${isChecked ? "checked" : ""}></td>
+                            <td>${ex.name} <br><a href="#" class="timestamp" data-seconds="${ex.startSeconds}">${ex.timestamp}</a></td>
+                            <td>${ex.reps}</td>
+                            <td>${ex.technique}</td>
+                            <td>${ex.alternate}</td>
+                        </tr>`;
                 });
+                tableHTML += `</tbody></table>`;
+                container.innerHTML += tableHTML;
 
-                // Add event listeners for checkboxes
                 document.querySelectorAll('#today-workout input[type="checkbox"]').forEach(checkbox => {
                     checkbox.addEventListener('change', function() {
                         localStorage.setItem(this.id, this.checked);
                         updateProgress();
                     });
                 });
+
+                document.querySelectorAll('.timestamp').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const seconds = parseInt(this.getAttribute('data-seconds'));
+                        if (!isAssistanceOn) {
+                            toggleAssistance(); // Turn on assistance if off
+                        }
+                        playVideoAtTimestamp(seconds);
+                    });
+                });
+
                 updateProgress();
             } else {
                 container.innerHTML = `<p>Rest Day - No workout scheduled.</p>`;
@@ -795,7 +926,6 @@
             }
         }
 
-        // Load today's workout on page load
         window.onload = loadTodayWorkout;
     </script>
 </body>
