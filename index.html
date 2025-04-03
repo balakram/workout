@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMBO Muscle Building Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            color: #333;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(to bottom, #2c2c2c, #1a1a1a);
+            overflow-x: hidden;
+            transition: width 0.5s ease;
+            padding-top: 80px;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        }
+
+        .sidebar.light-mode {
+            background: linear-gradient(to bottom, #fff, #f0f0f0);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #f0f0f0;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.light-mode a {
+            color: #333;
+        }
+
+        .sidebar a:hover {
+            background-color: #4CAF50;
+            color: #fff;
+            padding-left: 35px;
+            transform: scale(1.05);
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sidebar.light-mode .close-btn {
+            color: #333;
+        }
+
+        .sidebar .close-btn:hover {
+            color: #4CAF50;
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            color: #fff;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 50%;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .menu-btn:hover {
+            background: linear-gradient(45deg, #388E3C, #4CAF50);
+            transform: rotate(90deg);
+        }
+
+        .menu-btn.active {
+            background: linear-gradient(45deg, #d32f2f, #f44336);
+        }
+
+        /* Mode Toggle Button */
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2000;
+            transition: 0.3s;
+        }
+
+        .mode-toggle:hover {
+            background: #388E3C;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 20px;
+            padding: 40px;
+            transition: margin-left 0.5s ease;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .light-mode h1 {
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            color: #fff;
+            margin: 30px 0 20px;
+            font-size: 2em;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+
+        .light-mode h2 {
+            color: #333;
+        }
+
+        h3 {
+            color: #4CAF50;
+            margin: 20px 0 15px;
+            font-size: 1.5em;
+        }
+
+        /* Section Styling */
+        .section {
+            display: none;
+            background: rgba(44, 44, 44, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            animation: slideIn 0.5s ease;
+        }
+
+        .light-mode .section {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Checkbox Styling */
+        .workout-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .light-mode .workout-item {
+            background: #e0e0e0;
+        }
+
+        .workout-item:hover {
+            background: #3d3d3d;
+            transform: translateX(5px);
+        }
+
+        .light-mode .workout-item:hover {
+            background: #d0d0d0;
+        }
+
+        .workout-item input[type="checkbox"] {
+            margin-right: 15px;
+            accent-color: #4CAF50;
+            transform: scale(1.2);
+        }
+
+        /* Progress Bar */
+        #progress {
+            width: 100%;
+            background: #444;
+            height: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .light-mode #progress {
+            background: #ccc;
+        }
+
+        #progress-bar {
+            width: 0%;
+            background: #4CAF50;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .light-mode table {
+            background: #fff;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        .light-mode th, .light-mode td {
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #3d3d3d;
+        }
+
+        .light-mode tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+
+        tr:hover {
+            background-color: #444;
+        }
+
+        .light-mode tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Images and GIFs */
+        .exercise-img, .diet-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .light-mode .exercise-img, .light-mode .diet-img {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .exercise-img:hover, .diet-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Diet Plan */
+        .diet-item {
+            margin: 25px 0;
+            padding: 20px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .light-mode .diet-item {
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .diet-item:hover {
+            background: #3d3d3d;
+            transform: translateY(-5px);
+        }
+
+        .light-mode .diet-item:hover {
+            background: #f0f0f0;
+        }
+
+        .diet-item p {
+            margin: 10px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            table, th, td {
+                font-size: 0.85em;
+                padding: 12px;
+            }
+
+            .sidebar {
+                width: 0;
+            }
+
+            .sidebar a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .menu-btn, .mode-toggle {
+                padding: 10px 15px;
+                font-size: 20px;
+            }
+
+            .exercise-img, .diet-img {
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleNav()">×</span>
+        <a href="#" onclick="showSection('today')">Today's Workout</a>
+        <a href="#" onclick="showSection('weekly')">Weekly Schedule</a>
+        <a href="#" onclick="showSection('diet')">Diet Plan</a>
+    </div>
+
+    <!-- Toggle Menu Button -->
+    <button id="menu-btn" class="menu-btn" onclick="toggleNav()">☰</button>
+
+    <!-- Mode Toggle Button -->
+    <button id="mode-toggle" class="mode-toggle" onclick="toggleMode()">Light Mode</button>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>RAMBO Muscle Building Program</h1>
+
+        <!-- Today's Workout Section -->
+        <div id="today" class="section active">
+            <h2>Today's Workout</h2>
+            <div id="today-workout"></div>
+            <div id="progress">
+                <div id="progress-bar"></div>
+            </div>
+            <button onclick="localStorage.clear(); loadTodayWorkout();">Reset Progress</button>
+        </div>
+
+        <!-- Weekly Schedule Section -->
+        <div id="weekly" class="section">
+            <h2>Weekly Workout Schedule</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>MON</th>
+                        <th>TUE</th>
+                        <th>WED</th>
+                        <th>THUR</th>
+                        <th>FRI</th>
+                        <th>SAT</th>
+                        <th>SUN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>WEEK 1-8</td>
+                        <td>CHEST & TRICEPS</td>
+                        <td>BACK & BICEPS</td>
+                        <td>REST</td>
+                        <td>DELTS & TRAPS</td>
+                        <td>LEGS</td>
+                        <td>CARDIO & ABS</td>
+                        <td>REST</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>CHEST | TRICEPS</h2>
+            <img src="https://media.giphy.com/media/3o7TKz2bF9XjX6Q8G4/giphy.gif" alt="Chest Workout GIF" class="exercise-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>EXERCISES</th>
+                        <th>REPS</th>
+                        <th>TECHNIQUE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1A. DB BENCH PRESS / 1B. SKULL CRUSHER</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>2A. DB INCLINE PRESS / 2B. TRICEP PRESSDOWN</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>3A. DB INCLINE FLY / 3B. TRICEP BENCH DIPS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>4A. DECLINE PUSH-UPS / 4B. INCLINE CLOSE HAND PUSH-UPS</td>
+                        <td>Set#1 - 15-20 / Set#2 - 15-20</td>
+                        <td>Regular / Regular</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>BACK | BICEPS</h2>
+            <img src="https://media.giphy.com/media/26xBzdJxxHEdAl4v6/giphy.gif" alt="Back Workout GIF" class="exercise-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>EXERCISES</th>
+                        <th>REPS</th>
+                        <th>TECHNIQUE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1A. WIDE GRIP LAT PULLDOWN / 1B. BARBELL BICEP CURLS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>2A. CLOSE GRIP MACHINE ROWS / 2B. DB HAMMER CURLS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>3A. HAMMER ROWS / 3B. INCLINE DB CURLS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>4A. LAYING ROP ROWS / 4B. HIGH ANGLE BICEP CURLS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>SHOULDERS | TRAPS</h2>
+            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Shoulder Workout GIF" class="exercise-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>EXERCISES</th>
+                        <th>REPS</th>
+                        <th>TECHNIQUE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1A. SEATED DB PRESS / 1B. REAR DELT DB FLYS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>2A. DB SIDE RAISES / 2B. PLATE OR BARBELL UPRIGHT ROWS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>3A. BAR FRONT ROWS / 3B. INCLINE DB FRONT ROWS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>4. BARBELL SHRUGS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>QUADS | HAMSTRING | CALVES</h2>
+            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Leg Workout GIF" class="exercise-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>EXERCISES</th>
+                        <th>REPS</th>
+                        <th>TECHNIQUE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1A. BARBELL BACK SQUATS / 1B. LEG PRESS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>2A. DB STIFF LEG DEADLIFT / 2B. DB SPLIT SQUAT</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>3A. LEG EXTENSION / 3B. LAYING LEG CURLS</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                    <tr>
+                        <td>4A. DONKEY CALF RAISES / 4B. SEATED CALF RAISES</td>
+                        <td>Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8</td>
+                        <td>Regular / TUT / Drop</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>ABS</h2>
+            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Abs Workout GIF" class="exercise-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>EXERCISES</th>
+                        <th>REPS</th>
+                        <th>TECHNIQUE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HANGING LEG RAISE</td>
+                        <td>3 x 15-20</td>
+                        <td>Regular</td>
+                    </tr>
+                    <tr>
+                        <td>ROPE CRUNCHES</td>
+                        <td>3 x 15-20</td>
+                        <td>Regular</td>
+                    </tr>
+                    <tr>
+                        <td>CABLE SIDE TWIST</td>
+                        <td>3 x 15-20</td>
+                        <td>Regular</td>
+                    </tr>
+                    <tr>
+                        <td>PLATE SIDE BEND</td>
+                        <td>3 x 15-20</td>
+                        <td>Regular</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>CARDIO</h2>
+            <img src="https://media.giphy.com/media/3o7TKz9XzQeXzXzXzX/giphy.gif" alt="Cardio Workout GIF" class="exercise-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>MACHINE</th>
+                        <th>ACTIVITY</th>
+                        <th>TIME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TREADMILL - 25 MIN</td>
+                        <td>WARM UP / JOGGING / COOL DOWN</td>
+                        <td>5 MIN / 15 MIN / 5 MIN</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Diet Plan Section -->
+        <div id="diet" class="section">
+            <h2>Diet Plan</h2>
+            <div class="diet-item">
+                <h3>Meal 1 - Oat Meal</h3>
+                <img src="https://via.placeholder.com/300x200?text=Oat+Meal" alt="Oat Meal" class="diet-img">
+                <p>OATS: 150g | ALMONDS: 22g | RAISINS: 15g | WHEY: 1.5 scoop OR BOILED EGG WHITES: 6-8</p>
+                <p>CALORIES: 515 | PROTEIN: 40g | CARBS: 55g | FATS: 15g</p>
+            </div>
+            <div class="diet-item">
+                <h3>Meal 2 - Bread Omelet</h3>
+                <img src="https://via.placeholder.com/300x200?text=Bread+Omelet" alt="Bread Omelet" class="diet-img">
+                <p>WHOLE EGG: 1 | EGG WHITES: 6 | MIXED VEGETABLES: 1 cup | WHEAT BREAD: 2 slices</p>
+                <p>CALORIES: 410 | PROTEIN: 30g | CARBS: 50g | FATS: 10g</p>
+            </div>
+            <div class="diet-item">
+                <h3>Meal 3 - Wrap</h3>
+                <img src="https://via.placeholder.com/300x200?text=Chicken+Wrap" alt="Chicken Wrap" class="diet-img">
+                <p>GRILLED CHICKEN: 100g | BLACK BEANS: 100g | MIXED VEGGIES (SAUTEED): 1 cup | WHEAT TORTILLA: 1</p>
+                <p>CALORIES: 450 | PROTEIN: 40g | CARBS: 50g | FATS: 10g</p>
+            </div>
+            <div class="diet-item">
+                <h3>Meal 4 - Sprouted Beans & Eggs</h3>
+                <img src="https://via.placeholder.com/300x200?text=Sprouted+Beans" alt="Sprouted Beans" class="diet-img">
+                <p>SPROUTED BEANS: 100g | KIDNEY BEANS: 50g | WHITE CHANNA: 50g | MIXED VEGGIES: 1 cup | BOILED EGG WHITES: 3-4</p>
+                <p>CALORIES: 439 | PROTEIN: 30g | CARBS: 55g | FATS: 11g</p>
+            </div>
+            <div class="diet-item">
+                <h3>Meal 5 - Chicken & Rice</h3>
+                <img src="https://via.placeholder.com/300x200?text=Chicken+Rice" alt="Chicken & Rice" class="diet-img">
+                <p>GRILLED CHICKEN: 150g | MIXED VEGGIES (SAUTEED): 1 cup | COCONUT OIL: 1/2 tsp | BROWN RICE: 200g</p>
+                <p>CALORIES: 450 | PROTEIN: 40g | CARBS: 50g | FATS: 10g</p>
+            </div>
+            <div class="diet-item">
+                <h3>Pre-Workout</h3>
+                <img src="https://via.placeholder.com/300x200?text=Pre-Workout+Drink" alt="Pre-Workout Drink" class="diet-img">
+                <p>BULLET: 1 scoop | WATER: 120ml</p>
+            </div>
+            <div class="diet-item">
+                <h3>During Workout</h3>
+                <img src="https://via.placeholder.com/300x200?text=BCAA+Drink" alt="BCAA Drink" class="diet-img">
+                <p>BCAA: 1 scoop | WATER: 500-800ml</p>
+            </div>
+            <div class="diet-item">
+                <h3>Post-Workout</h3>
+                <img src="https://via.placeholder.com/300x200?text=Whey+Shake" alt="Whey Shake" class="diet-img">
+                <p>WHEY BLEND OR ISOLATE: 2 scoops | WATER: 350-400ml | 4 DATES OR GRAPES: 80-100g</p>
+                <p>CALORIES: 280 | PROTEIN: 50g | CARBS: 20g | FATS: 0g</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Menu Navigation
+        const sidebar = document.getElementById("sidebar");
+        const menuBtn = document.getElementById("menu-btn");
+        let isOpen = false;
+
+        function toggleNav() {
+            if (isOpen) {
+                sidebar.style.width = "0";
+                document.querySelector(".main-content").style.marginLeft = "20px";
+                menuBtn.innerHTML = "☰";
+                menuBtn.classList.remove("active");
+            } else {
+                sidebar.style.width = "250px";
+                document.querySelector(".main-content").style.marginLeft = "250px";
+                menuBtn.innerHTML = "✖";
+                menuBtn.classList.add("active");
+            }
+            isOpen = !isOpen;
+        }
+
+        // Show Sections
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            toggleNav(); // Close sidebar after selection
+        }
+
+        // Dark/Light Mode Toggle
+        const modeToggle = document.getElementById("mode-toggle");
+        let isLightMode = false;
+
+        function toggleMode() {
+            isLightMode = !isLightMode;
+            document.body.classList.toggle("light-mode");
+            sidebar.classList.toggle("light-mode");
+            modeToggle.textContent = isLightMode ? "Dark Mode" : "Light Mode";
+            localStorage.setItem("theme", isLightMode ? "light" : "dark");
+        }
+
+        // Load saved theme
+        if (localStorage.getItem("theme") === "light") {
+            toggleMode();
+        }
+
+        // Today's Workout Logic with Local Storage and Progress Bar
+        const workouts = [
+            { day: "Monday", name: "CHEST & TRICEPS", exercises: ["DB Bench Press", "Skull Crusher", "DB Incline Press", "Tricep Pressdown"] },
+            { day: "Tuesday", name: "BACK & BICEPS", exercises: ["Wide Grip Lat Pulldown", "Barbell Bicep Curls", "Close Grip Machine Rows", "DB Hammer Curls"] },
+            { day: "Wednesday", name: "REST", exercises: [] },
+            { day: "Thursday", name: "DELTS & TRAPS", exercises: ["Seated DB Press", "Rear Delt DB Flys", "DB Side Raises", "Barbell Shrugs"] },
+            { day: "Friday", name: "LEGS", exercises: ["Barbell Back Squats", "Leg Press", "DB Stiff Leg Deadlift", "Leg Extension"] },
+            { day: "Saturday", name: "CARDIO & ABS", exercises: ["Hanging Leg Raise", "Rope Crunches", "Treadmill (25 min)"] },
+            { day: "Sunday", name: "REST", exercises: [] }
+        ];
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('#today-workout input[type="checkbox"]');
+            const total = checkboxes.length;
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = total > 0 ? `${(checked / total) * 100}%` : "0%";
+        }
+
+        function loadTodayWorkout() {
+            const today = new Date().toLocaleString('en-us', { weekday: 'long' });
+            const workout = workouts.find(w => w.day === today);
+            const container = document.getElementById("today-workout");
+
+            if (workout.exercises.length > 0) {
+                container.innerHTML = `<h3>${workout.name}</h3>`;
+                workout.exercises.forEach(ex => {
+                    const checkboxId = `${today}-${ex}`;
+                    const isChecked = localStorage.getItem(checkboxId) === "true";
+                    container.innerHTML += `
+                        <div class="workout-item">
+                            <input type="checkbox" id="${checkboxId}" ${isChecked ? "checked" : ""}>
+                            <label for="${checkboxId}">${ex}</label>
+                        </div>`;
+                });
+
+                // Add event listeners for checkboxes
+                document.querySelectorAll('#today-workout input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        localStorage.setItem(this.id, this.checked);
+                        updateProgress();
+                    });
+                });
+                updateProgress();
+            } else {
+                container.innerHTML = `<p>Rest Day - No workout scheduled.</p>`;
+                document.getElementById("progress-bar").style.width = "0%";
+            }
+        }
+
+        // Load today's workout on page load
+        window.onload = loadTodayWorkout;
+    </script>
+</body>
+</html>
