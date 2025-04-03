@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -313,7 +312,7 @@
             display: block;
         }
 
-        #youtube-player {
+        #local-video {
             width: 100%;
             max-width: 600px;
             height: 300px;
@@ -365,7 +364,7 @@
                 font-size: 16px;
             }
 
-            #youtube-player {
+            #local-video {
                 height: 200px;
             }
         }
@@ -401,7 +400,7 @@
                 padding: 4px 8px;
             }
 
-            #youtube-player {
+            #local-video {
                 height: 150px;
             }
         }
@@ -420,7 +419,7 @@
         <a href="#" onclick="showSection('diet')">Diet Plan</a>
         <div class="developer-info">
             Developed by Balakram Tudu | 
-            <a href="https://balakramtudu-portfolio.com" target="_blank">Portfolio</a>
+            <a href="https://balakram.github.io/balakramtudu/" target="_blank">Portfolio</a>
         </div>
     </div>
 
@@ -434,7 +433,9 @@
                 <div id="progress-bar"></div>
             </div>
             <div id="assistance-video" class="assistance-video">
-                <div id="youtube-player"></div>
+                <video id="local-video" controls>
+                    <!-- Source will be set dynamically based on the day -->
+                </video>
             </div>
         </div>
 
@@ -705,8 +706,6 @@
         </div>
     </div>
 
-    <!-- Load YouTube API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         // Toggle Menu Navigation
         const sidebar = document.getElementById("sidebar");
@@ -751,49 +750,29 @@
             toggleMode();
         }
 
-        // Assistance Toggle and YouTube Player
+        // Assistance Toggle and Video Control
         const assistanceBtn = document.getElementById("assistance-btn");
         const assistanceVideo = document.getElementById("assistance-video");
+        const videoElement = document.getElementById("local-video");
         let isAssistanceOn = false;
-        let player;
 
         function toggleAssistance() {
             isAssistanceOn = !isAssistanceOn;
             assistanceBtn.classList.toggle("on", isAssistanceOn);
             assistanceVideo.classList.toggle("active", isAssistanceOn);
-            if (isAssistanceOn && !player) {
-                initYouTubePlayer();
+            if (!isAssistanceOn) {
+                videoElement.pause(); // Pause video when assistance is turned off
             }
         }
 
-        function initYouTubePlayer() {
-            const today = new Date().toLocaleString('en-us', { weekday: 'long' });
-            const workout = workouts.find(w => w.day === today);
-            const videoId = workout.videoId; // Get video ID for today's workout
-
-            player = new YT.Player('youtube-player', {
-                height: '300',
-                width: '600',
-                videoId: videoId,
-                playerVars: {
-                    'playsinline': 1,
-                    'controls': 1,
-                    'rel': 0
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Player is ready, but don't play until a timestamp is clicked
-        }
-
         function playVideoAtTimestamp(seconds) {
-            if (player && isAssistanceOn) {
-                player.seekTo(seconds, true);
-                player.playVideo();
+            if (isAssistanceOn) {
+                videoElement.currentTime = seconds;
+                videoElement.play();
+            } else {
+                toggleAssistance(); // Turn on assistance if off
+                videoElement.currentTime = seconds;
+                videoElement.play();
             }
         }
 
@@ -802,7 +781,7 @@
             { 
                 day: "Monday", 
                 name: "CHEST & TRICEPS", 
-                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                videoFile: "chest_triceps.mp4", // Replace with your actual video filename
                 exercises: [
                     { name: "1A. DB Bench Press<br>1B. Skull Crusher", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Bench Press", timestamp: "0:00-1:30", startSeconds: 0 },
                     { name: "2A. DB Incline Press<br>2B. Tricep Pressdown", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Incline Press", timestamp: "1:31-3:00", startSeconds: 91 },
@@ -813,7 +792,7 @@
             { 
                 day: "Tuesday", 
                 name: "BACK & BICEPS", 
-                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                videoFile: "back_biceps.mp4", // Replace with your actual video filename
                 exercises: [
                     { name: "1A. Wide Grip Lat Pulldown<br>1B. Barbell Bicep Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Bicep Curls", timestamp: "0:00-1:30", startSeconds: 0 },
                     { name: "2A. Close Grip Machine Rows<br>2B. DB Hammer Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Reverse Curls", timestamp: "1:31-3:00", startSeconds: 91 },
@@ -825,7 +804,7 @@
             { 
                 day: "Thursday", 
                 name: "DELTS & TRAPS", 
-                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                videoFile: "delts_traps.mp4", // Replace with your actual video filename
                 exercises: [
                     { name: "1A. Seated DB Press<br>1B. Rear Delt DB Flys", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Shoulder Press", timestamp: "0:00-1:30", startSeconds: 0 },
                     { name: "2A. DB Side Raises<br>2B. Plate or Barbell Upright Rows", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Cable Side Raises", timestamp: "1:31-3:00", startSeconds: 91 },
@@ -836,9 +815,9 @@
             { 
                 day: "Friday", 
                 name: "LEGS", 
-                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                videoFile: "THURSDAY - Shoulders & Traps (RAMBO) (2).mp4", // Replace with your actual video filename
                 exercises: [
-                    { name: "1A. Barbell Back Squats<br>1B. Leg Press", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Squats / Squats on Smith", timestamp: "0:00-1:30", startSeconds: 0 },
+                    { name: "1A. Barbell Back Squats<br>1B. Leg Press", timestamp: "0:00-1:30", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Squats / Squats on Smith", timestamp: "0:00-1:30", startSeconds: 0 },
                     { name: "2A. DB Stiff Leg Deadlift<br>2B. DB Split Squat", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Barbell Stiff Leg Deadlift", timestamp: "1:31-3:00", startSeconds: 91 },
                     { name: "3A. Leg Extension<br>3B. Laying Leg Curls", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "DB Lunges", timestamp: "3:01-4:30", startSeconds: 181 },
                     { name: "4A. Donkey Calf Raises<br>4B. Seated Calf Raises", reps: "Set#1 - 10 / Set#2 - 8 / Set#3 - 8+8+8", technique: "Regular / TUT / Drop", alternate: "Standing Calf Raises", timestamp: "4:31-6:00", startSeconds: 271 }
@@ -847,7 +826,7 @@
             { 
                 day: "Saturday", 
                 name: "CARDIO & ABS", 
-                videoId: "dQw4w9WgXcQ", // Example YouTube video ID (replace with actual)
+                videoFile: "cardio_abs.mp4", // Replace with your actual video filename
                 exercises: [
                     { name: "Hanging Leg Raise", reps: "3 x 15-20", technique: "Regular", alternate: "Laying Leg Raise", timestamp: "0:00-1:00", startSeconds: 0 },
                     { name: "Rope Crunches", reps: "3 x 15-20", technique: "Regular", alternate: "Incline Crunches", timestamp: "1:01-2:00", startSeconds: 61 },
@@ -901,6 +880,10 @@
                 tableHTML += `</tbody></table>`;
                 container.innerHTML += tableHTML;
 
+                // Set video source dynamically
+                videoElement.innerHTML = `<source src="${workout.videoFile}" type="video/mp4">Your browser does not support the video tag.`;
+                videoElement.load(); // Reload video with new source
+
                 document.querySelectorAll('#today-workout input[type="checkbox"]').forEach(checkbox => {
                     checkbox.addEventListener('change', function() {
                         localStorage.setItem(this.id, this.checked);
@@ -912,9 +895,6 @@
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
                         const seconds = parseInt(this.getAttribute('data-seconds'));
-                        if (!isAssistanceOn) {
-                            toggleAssistance(); // Turn on assistance if off
-                        }
                         playVideoAtTimestamp(seconds);
                     });
                 });
